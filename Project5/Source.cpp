@@ -23,6 +23,9 @@ public:
 	void MyStrCat(const MyString& b);
 	void MyDelChr(char c);
 	int MyStrCmp(const MyString& b);
+	MyString& operator=(const MyString& b);
+	void operator()();
+	char operator[](int U);;
 };
 int MyString::obj_count = 0;
 
@@ -152,6 +155,39 @@ int MyString::MyStrCmp(const MyString& b)
 		return -1;
 	else
 		return 0;
+}
+
+MyString& MyString::operator=(const MyString& b)
+{
+	if (str == b.str)
+	{
+		return *this;
+	}
+	if (str !=nullptr)
+	{
+		delete[]str;
+	}
+	str = new char[strlen(b.str) + 1];
+	strcpy_s(str, strlen(b.str) + 1, b.str);
+	length = strlen(b.str);
+	return *this;
+}
+
+void MyString::operator()()
+{
+	cout << "str= " << str << endl << "Naga-sa= " << length;
+}
+
+char MyString::operator[](int U)
+{
+	if (U >= 0 && U < strlen(str))
+	{
+		return str[U];
+	}
+	else
+	{
+		return '\0';
+	}
 }
 
 void MyString::ObjCount()
