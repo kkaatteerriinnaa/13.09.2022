@@ -25,7 +25,8 @@ public:
 	int MyStrCmp(const MyString& b);
 	MyString& operator=(const MyString& b);
 	void operator()();
-	char operator[](int U);;
+	char operator[](int U);
+	MyString(initializer_list <char> A);
 };
 int MyString::obj_count = 0;
 
@@ -187,6 +188,17 @@ char MyString::operator[](int U)
 	else
 	{
 		return '\0';
+
+	}
+}
+
+MyString::MyString(initializer_list<char> A)
+{
+	length = A.size();
+	str = new char[length];
+	for (int i = 0; i < length; i++)
+	{
+		str[i] = A.begin()[i];
 	}
 }
 
